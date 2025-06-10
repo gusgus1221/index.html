@@ -378,11 +378,17 @@
   }
 
   function updateCounter() {
-    const startDate = new Date('2024-10-10');
-    const now = new Date();
-    const diffTime = Math.abs(now - startDate);
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    document.getElementById('dayCounter').textContent = diffDays + ' días';
+      const startDate = new Date('2024-10-10T00:00:00');
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+
+      const formatted = `${days} días ${hours}h ${minutes}m ${seconds}s`;
+      document.getElementById('dayCounter').textContent = formatted;
   }
 
   window.onload = function () {
