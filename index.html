@@ -392,8 +392,9 @@
   }
 
   window.onload = function () {
-    generateHearts();
-    updateCounter();
+  generateHearts();
+  updateCounter();
+  setInterval(updateCounter, 1000);
   };
 </script>
 
