@@ -4,6 +4,20 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Tania ❤️</title>
+
+<!-- Etiquetas Open Graph para preview -->
+<meta property="og:title" content="💖 Tania – Una página solo para vos" />
+<meta property="og:description" content="Una página romántica creada especialmente para vos, con flores y mensajes personalizados." />
+<meta property="og:image" content="https://tusitio.com/imagen-preview.jpg" />
+<meta property="og:url" content="https://gusgus1221.github.io/index.html" />
+<meta property="og:type" content="website" />
+
+<!-- Twitter Cards (opcional) -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="💖 Tania – Una página solo para vos" />
+<meta name="twitter:description" content="Una página romántica creada especialmente para vos, con flores y mensajes personalizados." />
+<meta name="twitter:image" content="https://tusitio.com/imagen-preview.jpg" />
+
 <style>
   body {
     margin: 0;
@@ -364,22 +378,17 @@
   }
 
   function updateCounter() {
-    const startDate = new Date('2024-10-11T00:00:00');
+    const startDate = new Date('2023-06-25');
     const now = new Date();
-    const diffTime = now - startDate;
-
-    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diffTime / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diffTime / (1000 * 60)) % 60);
-    const seconds = Math.floor((diffTime / 1000) % 60);
-
-    document.getElementById('dayCounter').innerText =
-      `${days} días, ${hours} hs, ${minutes} min, ${seconds} seg`;
+    const diffTime = Math.abs(now - startDate);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    document.getElementById('dayCounter').textContent = diffDays + ' días';
   }
 
-  generateHearts();
-  updateCounter();
-  setInterval(updateCounter, 1000);
+  window.onload = function () {
+    generateHearts();
+    updateCounter();
+  };
 </script>
 
 </body>
