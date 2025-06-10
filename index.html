@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tania ❤️</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Georgia', serif;
+    background: linear-gradient(135deg, #fff0f5, #ffe4e1);
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+    text-align: center;
+    color: #6b2d5c;
+  }
+
+  .button {
+    background-color: #d18baf;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    margin: 20px auto;
+    transition: background 0.3s;
+    z-index: 10;
+  }
+
+  .button:hover {
+    background-color: #b96b99;
+  }
+
+  #choiceButtons {
+    display: none;
+    margin-top: 30px;
+  }
+
+  .choice {
+    margin: 10px;
+  }
+
+  #infielMessage {
+    display: none;
+    font-size: 24px;
+    margin-top: 20px;
+  }
+
+  #volverButton {
+    display: none;
+    margin-top: 10px;
+  }
+
+  .flower-container {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-top: 40px;
+  }
+
+  .flower {
+    width: 150px;
+    height: 250px;
+    position: relative;
+    animation: bloom 2.5s ease forwards;
+  }
+
+  .stem {
+    width: 6px;
+    height: 140px;
+    background-color: #228B22;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 3px;
+  }
+
+  .leaf {
+    width: 30px;
+    height: 15px;
+    background: #7fc97f;
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .leaf.left {
+    left: -20px;
+    bottom: 60px;
+    transform: rotate(-30deg);
+  }
+
+  .leaf.right {
+    right: -20px;
+    bottom: 60px;
+    transform: rotate(30deg);
+  }
+
+  .center {
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at center, #ffec8b, #f4c542);
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 5px #aaa inset;
+  }
+
+  .petal {
+    width: 60px;
+    height: 80px;
+    background: radial-gradient(circle, #ffc0cb, #f5a6b7);
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform-origin: bottom center;
+    transform: translateX(-50%) rotate(var(--angle));
+    opacity: 0;
+    animation: fadeInPetal 1s ease forwards;
+  }
+
+  .petal:nth-child(n) {
+    animation-delay: calc(var(--angle) * 0.01s + 1s);
+  }
+
+  @keyframes fadeInPetal {
+    to { opacity: 1; }
+  }
+
+  @keyframes bloom {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .message {
+    font-size: 24px;
+    font-style: italic;
+    max-width: 700px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    padding: 10px;
+    color: #6b2d5c;
+  }
+
+  .counter-section {
+    margin-top: 20px;
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    color: #ba6b7a;
+    font-family: 'Georgia', serif;
+  }
+
+  .counter-section.visible {
+    opacity: 1;
+  }
+
+  .counter-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .counter {
+    font-size: 20px;
+    font-family: monospace;
+  }
+
+  .bees {
+    position: relative;
+    height: 50px;
+    margin-bottom: -40px;
+  }
+
+  .bee {
+    width: 40px;
+    height: 40px;
+    background: yellow;
+    border-radius: 50%;
+    position: absolute;
+    border: 2px solid black;
+    animation: fly 4s infinite alternate ease-in-out;
+  }
+
+  .bee::before,
+  .bee::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+  }
+
+  .bee::before {
+    width: 20px;
+    height: 20px;
+    top: -10px;
+    left: 10px;
+  }
+
+  .bee::after {
+    content: '😊';
+    background: none;
+    font-size: 18px;
+    top: 10px;
+    left: 8px;
+  }
+
+  .bee:nth-child(1) {
+    left: -60px;
+  }
+
+  .bee:nth-child(2) {
+    left: 60px;
+    animation-delay: 2s;
+  }
+
+  @keyframes fly {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(20px) translateY(10px); }
+  }
+
+  .heart {
+    width: 10px;
+    height: 10px;
+    background-color: pink;
+    position: absolute;
+    transform: rotate(45deg);
+    animation: float 10s infinite;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: pink;
+    position: absolute;
+    border-radius: 50%;
+  }
+
+  .heart::before {
+    top: -5px;
+    left: 0;
+  }
+
+  .heart::after {
+    left: -5px;
+    top: 0;
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-100vh) rotate(45deg);
+      opacity: 0;
+    }
+  }
+
+  .firma {
+    position: fixed;
+    bottom: 10px;
+    right: 15px;
+    font-family: 'Georgia', serif;
+    font-size: 16px;
+    color: #6b2d5c;
+    opacity: 0.7;
+    user-select: none;
+  }
+</style>
+</head>
+<body>
+
+<button class="button" id="startButton" onclick="showChoices()">click si sos tanu</button>
+
+<div id="choiceButtons">
+  <button class="button choice" onclick="chooseFiel()">fiel</button>
+  <button class="button choice" onclick="chooseInfiel()">infiel</button>
+</div>
+
+<div id="infielMessage">
+  como cami mayannnnnnnn
+  <div><button class="button" id="volverButton" onclick="volver()">Volver</button></div>
+</div>
+
+<div class="flower-container" id="flowerContainer">
+  <div class="bees">
+    <div class="bee"></div>
+    <div class="bee"></div>
+  </div>
+  <div class="flower">
+    <div class="stem"></div>
+    <div class="leaf left"></div>
+    <div class="leaf right"></div>
+    <div class="center"></div>
+    <div class="petal" style="--angle: 0deg"></div>
+    <div class="petal" style="--angle: 60deg"></div>
+    <div class="petal" style="--angle: 120deg"></div>
+    <div class="petal" style="--angle: 180deg"></div>
+    <div class="petal" style="--angle: 240deg"></div>
+    <div class="petal" style="--angle: 300deg"></div>
+  </div>
+  <div class="message" id="message">
+    “Con vos siempre si a todo, porque solo yo sé cuanto quería a alguien como vos en mi vida. Siempre digo que no necesito nada, pero vos llegas con mil cosas y me doy cuenta del privilegio de tenerte conmigo”
+  </div>
+  <div class="counter-section">
+    <div class="counter-title">Días desde que cambiaste de color mis días</div>
+    <div class="counter" id="dayCounter"></div>
+  </div>
+</div>
+
+<div class="firma">Gusgus</div>
+
+<script>
+  function showChoices() {
+    document.getElementById('startButton').style.display = 'none';
+    document.getElementById('choiceButtons').style.display = 'block';
+  }
+
+  function chooseInfiel() {
+    document.getElementById('choiceButtons').style.display = 'none';
+    document.getElementById('infielMessage').style.display = 'block';
+    document.getElementById('volverButton').style.display = 'inline-block';
+  }
+
+  function volver() {
+    document.getElementById('infielMessage').style.display = 'none';
+    document.getElementById('choiceButtons').style.display = 'block';
+  }
+
+  function chooseFiel() {
+    document.getElementById('choiceButtons').style.display = 'none';
+    const container = document.getElementById('flowerContainer');
+    container.style.display = 'flex';
+
+    setTimeout(() => {
+      document.getElementById('message').style.opacity = 1;
+    }, 3000);
+
+    setTimeout(() => {
+      document.querySelector('.counter-section').classList.add('visible');
+    }, 5000);
+  }
+
+  function generateHearts() {
+    for (let i = 0; i < 40; i++) {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = Math.random() * 100 + 'vh';
+      heart.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 85%)`;
+      heart.style.animationDuration = `${6 + Math.random() * 6}s`;
+      document.body.appendChild(heart);
+    }
+  }
+
+  function updateCounter() {
+    const startDate = new Date('2024-10-11T00:00:00');
+    const now = new Date();
+    const diffTime = now - startDate;
+
+    const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diffTime / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diffTime / (1000 * 60)) % 60);
+    const seconds = Math.floor((diffTime / 1000) % 60);
+
+    document.getElementById('dayCounter').innerText =
+      `${days} días, ${hours} hs, ${minutes} min, ${seconds} seg`;
+  }
+
+  generateHearts();
+  updateCounter();
+  setInterval(updateCounter, 1000);
+</script>
+
+</body>
+</html>
